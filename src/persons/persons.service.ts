@@ -15,14 +15,20 @@ export class PersonsService {
 
   
   async create(newPerson: Person): Promise<Person> {
+    // Ensure that payment is always an array
+    newPerson.payment = Array.isArray(newPerson.payment) ? newPerson.payment : [newPerson.payment];
+  
     const createdPerson = new this.personModel(newPerson);
     return createdPerson.save();
   }
-
+  
   async update(id: string, updatedPerson: Person): Promise<Person> {
+    // Ensure that payment is always an array
+    updatedPerson.payment = Array.isArray(updatedPerson.payment) ? updatedPerson.payment : [updatedPerson.payment];
+  
     return this.personModel.findByIdAndUpdate(id, updatedPerson, { new: true });
   }
-
+  
   async delete(id: string): Promise<void> {
     await this.personModel.findByIdAndDelete(id);
   }

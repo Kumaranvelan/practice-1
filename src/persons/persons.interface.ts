@@ -12,5 +12,5 @@ export interface Person {
   dateOfBirth?: string;
   logo?: string;
   criticalAccounts: string[];
-  payments: string[];
+  payment: string[];
 }
